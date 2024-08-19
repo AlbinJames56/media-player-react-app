@@ -6,7 +6,7 @@ function LandingPage() {
   const navigateByUrl = useNavigate();
   return (
     <>
-      <Row className="mt-5 align-items-center justify-content-between w-100 p-5 pt-1">
+      <Row className="mt-5 align-items-center  justify-content-between w-100 p-5 pt-1">
         <Col></Col>
         <Col lg={5}>
           <h1 style={{ color: "white", fontSize: "40px" }}>
