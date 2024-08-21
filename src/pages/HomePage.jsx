@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import Add from "../Componets/Add";
 import View from "../Componets/View";
 import Category from "../Componets/Category";
 import { Link } from "react-router-dom";
 
 function HomePage() {
+  const [uploadVideoResponse,setUploadVideoResponse]=useState();
   return (
     <>
       <div className="container mt-3 mb-3 d-flex justify-content-between">
         <div className="add-videos">
-          <Add />
+          <Add setUploadVideoResponse={setUploadVideoResponse}/>
         </div>
         <Link
           to={"/watch-history"}
@@ -20,9 +21,9 @@ function HomePage() {
         </Link>
       </div>
       <div className="container-fluid m-5 mb-1 row">
-        <div className="all-vedios col-lg-9">
+        <div className="all-videos col-lg-9">
           <h2>All Videos</h2>
-          <View />
+          <View uploadVideoResponse={uploadVideoResponse}/>
         </div>
         <div className="category col-lg-3">
           <Category />

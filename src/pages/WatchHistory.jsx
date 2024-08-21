@@ -1,7 +1,24 @@
-import React from 'react' 
+import React, { useEffect, useState } from 'react' 
 import {Link} from 'react-router-dom'
+import { getHistoryAPI } from '../../services/allAPI'
 
 function WatchHistory() {
+  const [history,setHistory]=useState([])
+  useEffect(()=>{
+    getHistory()
+  },[])
+  const getHistory=async ()=>{
+    const result=await getHistoryAPI()
+    if(result.status=200){
+      setHistory(result.data)
+    }else{
+      console.log("Api Failed",result.message);
+      
+      
+    }
+   
+  }
+   console.log(history)
   return (
     <>
     <div className="container mt-5 mb-3 d-flex justify-content-between">

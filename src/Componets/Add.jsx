@@ -3,10 +3,10 @@ import { Button, FloatingLabel, Form, Modal } from "react-bootstrap";
 import { useState } from "react"; 
 import { uploadVideoAPI } from "../../services/allAPI"; 
 
-function Add() {
+function Add({setUploadVideoResponse}) {
   const [show, setShow] = useState(false);
   const [uploadVideo,setUploadVideo]=useState({id:"",name:"",url:"",link:""})
-  console.log(uploadVideo)
+  // console.log(uploadVideo)
 
   const getYoutubeLink=(e)=>{
      const {value}=e.target;
@@ -15,6 +15,7 @@ function Add() {
       let VID=value.split("v=")[1].slice(0,11)
     // console.log(`https://www.youtube.com/embed/${VID}`);
     setUploadVideo({...uploadVideo,link:`https://www.youtube.com/embed/${VID}`})
+   
     }
     else{
       setUploadVideo({...uploadVideo,link:""})
@@ -31,6 +32,7 @@ function Add() {
         alert("Video Uploaded")
         setUploadVideo({id:"",name:"",url:"",link:""})
         handleClose();
+        setUploadVideoResponse(result.data)
       }
       else{
         alert(result.message)

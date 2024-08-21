@@ -1,12 +1,21 @@
 import React from 'react'
 import { Button, Card, Modal } from 'react-bootstrap'
 import { useState } from 'react';
+import { addVideoHistoryAPI } from '../../services/allAPI';
 
 function Vediocard({video}) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = async () =>{
+    setShow(true);
+    const {name,link}=video;
+    const today=new Date();
+    let timeStamp= new Intl.DateTimeFormat('en-US',{year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",second:"2-digit"}).format(today);
+    let videoHistory={name,link,timeStamp}
+     await addVideoHistoryAPI(videoHistory);
+    
+  } 
   return (
      < >
      <Card style={{ width: '15rem' }}>

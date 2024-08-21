@@ -4,11 +4,11 @@ import VideoCard from "./Vediocard";
 import { getAllUploadedVideoAPI } from "../../services/allAPI";
  
 
-function View() {
+function View(uploadVideoResponse) {
   const [allVideos,setAllVideos]=useState([]);
   useEffect(()=>{
     getAllVideos()
-  },[])
+  },[uploadVideoResponse])
 
   const getAllVideos=async ()=>{
     const result=await getAllUploadedVideoAPI();
