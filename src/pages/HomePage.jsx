@@ -14,7 +14,7 @@ function HomePage() {
         </div>
         <Link
           to={"/watch-history"}
-          style={{ textDecoration: "none", color: "blueviolet" }}
+          style={{ textDecoration: "none", color: "white" }}
         >
           Watch History{" "}
           <i class="fa-solid fa-arrow-right-bracket fa-beat-fade"></i>

@@ -5,10 +5,13 @@ import { getAllUploadedVideoAPI } from "../../services/allAPI";
  
 
 function View(uploadVideoResponse) {
+  const [deleteVideoResponse,setDeleteVideoResponse]=useState(false);
+
   const [allVideos,setAllVideos]=useState([]);
   useEffect(()=>{
     getAllVideos()
-  },[uploadVideoResponse])
+    setDeleteVideoResponse(false)
+  },[uploadVideoResponse,deleteVideoResponse])
 
   const getAllVideos=async ()=>{
     const result=await getAllUploadedVideoAPI();
@@ -22,22 +25,18 @@ function View(uploadVideoResponse) {
     console.log("Api fetch failed")
     setAllVideos([])
   }
-  }
+  } 
 
- console.log(allVideos);
- 
   
-
   return (
     <>
       <Row >
         {
           allVideos?.length>0?allVideos.map(video=>(
              <Col sm={12} md={4} lg={3} key={video}>
-          <VideoCard video={video}/>
+          <VideoCard video={video} setDeleteVideoResponse={setDeleteVideoResponse}/>
         </Col>
           )):<p>Noting to display</p>
-       
         }
       </Row>
     </>

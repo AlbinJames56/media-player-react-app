@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react' 
 import {Link} from 'react-router-dom'
-import { getHistoryAPI } from '../../services/allAPI'
+import { deleteHistoryAPI, getHistoryAPI } from '../../services/allAPI'
 
 function WatchHistory() {
   const [history,setHistory]=useState([])
@@ -18,7 +18,10 @@ function WatchHistory() {
     }
    
   }
-   console.log(history)
+  const removeVideoHistory=async(id)=>{
+    await deleteHistoryAPI(id)
+    getHistory()
+  }
   return (
     <>
     <div className="container mt-5 mb-3 d-flex justify-content-between">
@@ -35,13 +38,18 @@ function WatchHistory() {
       </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Avesham </td>
-            <td>https://www.youtube.com/embed/OsMqr3556F8?autoplay=1</td>
-            <td>13-08-2024, 02:29 pm</td>
-            <td><button variant="primary"><i className='fa-solid fa-trash text-danger ' ></i></button></td>
+          {history?.length>0?history?.map((video,index)=>(
+            <tr>
+            <td>{index+1}</td>
+            <td>{video?.name} </td>
+            <td><a target='_blank' href={video.link}>{video.link}</a></td>
+            <td>{video.timeStamp}</td>
+            <td><button variant="primary" onClick={()=> removeVideoHistory(video?.id)}><i className='fa-solid fa-trash text-danger ' ></i></button></td>
           </tr>
+          )):
+          <p>Noting to Display</p>
+        }
+          
         </tbody>
       </table>
    
