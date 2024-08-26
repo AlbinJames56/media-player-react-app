@@ -44,7 +44,7 @@ function WatchHistory() {
             <td>{video?.name} </td>
             <td><a target='_blank' href={video.link}>{video.link}</a></td>
             <td>{video.timeStamp}</td>
-            <td><button variant="primary" onClick={()=> removeVideoHistory(video?.id)}><i className='fa-solid fa-trash text-danger ' ></i></button></td>
+            <td><button variant="primary" style={{background:"transparent" ,border:"none"}} onClick={()=> removeVideoHistory(video?.id)}><i className='fa-solid fa-trash  ms-2' style={{color:"red"}}  ></i></button></td>
           </tr>
           )):
           <p>Noting to Display</p>
