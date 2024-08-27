@@ -26,9 +26,15 @@ function Vediocard({ video, setDeleteVideoResponse }) {
     await deleteVideoAPI(id)
     setDeleteVideoResponse(true) 
   }
+
+  const DragStarted=(e,id)=>{
+    console.log(id);
+  e.dataTransfer.setData("VideoId", id);
+  
+  }
   return (
     <>
-      <Card style={{ width: "15rem" }}>
+      <Card style={{ width: "15rem" }} draggable onDragStart={e=>DragStarted(e,video?.id)}>
         <Card.Img variant="top" width={"100%"} style={{aspectRatio:"1.7/1"}} src={video.url} onClick={handleShow} />
         <Card.Body>
           <Card.Title className="d-flex justify-content-between align-items-center">
