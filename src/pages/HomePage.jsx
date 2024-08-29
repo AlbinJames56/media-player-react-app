@@ -21,7 +21,7 @@ function HomePage() {
           <i class="fa-solid fa-arrow-right-bracket fa-beat-fade"></i>
         </Link>
       </div>
-      <div className="container-fluid m-5 mb-1 row">
+      <div className="container-fluid m-5 mb-1 row h-full">
         <div className="all-videos col-lg-9">
           <h2>All Videos</h2>
           <View uploadVideoResponse={uploadVideoResponse} setDropVideoResponse={setDropVideoResponse}/>
