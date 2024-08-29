@@ -1,1 +1,1 @@
-export const SERVER_URL='https://mediaapp-server.onrender.com/';
+export const SERVER_URL='https://mediaapp-server.onrender.com';
