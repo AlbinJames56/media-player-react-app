@@ -3,7 +3,7 @@ import { Button, Card, Modal } from "react-bootstrap";
 import { useState } from "react";
 import { addVideoHistoryAPI, deleteVideoAPI } from "../../services/allAPI";
 
-function Vediocard({ video, setDeleteVideoResponse }) {
+function Vediocard({ video, setDeleteVideoResponse ,insideCategory}) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -40,10 +40,10 @@ function Vediocard({ video, setDeleteVideoResponse }) {
           <Card.Title className="d-flex justify-content-between align-items-center">
             {video?.name}
           </Card.Title>
-
+            {insideCategory?null:
           <Button variant="primary" onClick={()=> removeVideo(video?.id)}>
             <i className="fa-solid fa-trash text-white"></i>
-          </Button>
+          </Button>}
         </Card.Body>
       </Card>
       <Modal show={show} onHide={handleClose} lg>

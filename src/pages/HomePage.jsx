@@ -5,7 +5,8 @@ import Category from "../Componets/Category";
 import { Link } from "react-router-dom";
 
 function HomePage() {
-  const [uploadVideoResponse,setUploadVideoResponse]=useState();
+  const [uploadVideoResponse,setUploadVideoResponse]=useState({});
+  const [dropVideoResponse,setDropVideoResponse]=useState({})
   return (
     <>
       <div className="container mt-3 mb-3 d-flex justify-content-between">
@@ -23,10 +24,10 @@ function HomePage() {
       <div className="container-fluid m-5 mb-1 row">
         <div className="all-videos col-lg-9">
           <h2>All Videos</h2>
-          <View uploadVideoResponse={uploadVideoResponse}/>
+          <View uploadVideoResponse={uploadVideoResponse} setDropVideoResponse={setDropVideoResponse}/>
         </div>
         <div className="category col-lg-3">
-          <Category />
+          <Category dropVideoResponse={dropVideoResponse} />
         </div>
       </div>
     </>

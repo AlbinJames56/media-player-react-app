@@ -7,8 +7,11 @@ import {
   getAVideoAPI,
   updateCategoryAPI,
 } from "../../services/allAPI";
+
 import Vediocard from "./Vediocard";
-function Category() {
+
+
+function Category({dropVideoResponse}) {
   const [show, setShow] = useState(false);
   const [categoryName, setCategoryName] = useState("");
   const [allCategories, setAllCategories] = useState([]);
@@ -38,7 +41,8 @@ function Category() {
   };
   useEffect(() => {
     getCategories();
-  }, []);
+    
+  }, [dropVideoResponse]);
 
   const dragOver = (e) => {
     console.log("Video over");
@@ -72,6 +76,12 @@ function Category() {
         console.error("Error during video drop:", error);
     }
 };
+
+// dragging videos from category to outside
+const videoDragStarted=(e,videoId,categoryId)=>{
+  let dataShare={videoId,categoryId}
+  e.dataTransfer.setData("data",JSON.stringify(dataShare))
+}
   return (
     <div className="me-4">
       <div className="d-grid  ">
@@ -133,8 +143,8 @@ function Category() {
             <Row>
               {category?.allVideos?.length > 0
                 ? category.allVideos.map((card) => (
-                    <Col sm={12} className="mb-2">
-                      <Vediocard video={card} />
+                    <Col sm={12} className="mb-2" draggable onDragStart={e=>videoDragStarted(e,card.id,category.id)}>
+                      <Vediocard video={card} insideCategory={true}/>
                     </Col>
                   ))
                 : null}
